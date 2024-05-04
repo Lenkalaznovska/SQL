@@ -1,0 +1,27 @@
+select trida_cz,cena,zadano from zoo
+where zadano >= current_date - interval '1 month'
+order by zadano desc;
+
+select distinct trida_cz, min(cena), max(cena), avg(cena) from zoo
+group by trida_cz;
+
+select trida_cz, min(cena), max(cena) from zoo
+where k_prohlidce = true
+group by trida_cz;
+
+select trida_cz, min(cena), max(cena) from zvirata
+inner join trida t
+on trida_id = t.tid
+where k_prohlidce = true
+group by trida_cz;
+
+select distinct z.cena
+from zvirata z
+order by z.cena desc;
+
+select trida_cz, min(cena), max(cena) from zvirata
+inner join trida t
+on trida_id = t.tid
+where k_prohlidce = true
+group by trida_cz
+having count(1) > 15;
