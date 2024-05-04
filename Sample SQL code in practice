@@ -1,0 +1,117 @@
+-- REPORT-AUTOMATICKY ODCHÁZEJÍCÍCH PLÁNOVANÝCH ÚLOH ZE SYSTÉMU USYS:
+-- Tento dotaz vybírá informace o plánovaných úlohách, které opouštějí systém USYS.
+-- Zahrnuje informace jako ID úlohy, název úlohy, platnost úlohy, adresát(e-mail) a chybovou hlášku.
+-- Data jsou získávána z tabulek SCHEDTASK a SCHEDTASK_REPORT, které jsou spojeny pomocí LEFT JOIN.
+
+SELECT
+    SCHT_ID,
+    SCHT_NAME AS "NÁZEV PLÁNOVANÉ ÚLOHY",
+    SCHT_SYS AS "PLATNOST ÚLOHY",
+    SCHTREP_EMAIL_RECEIVER AS "ADRESÁT EMAILU",
+    SCHT_FAIL_EMAIL AS "CHYBOVÁ HLÁŠKA"
+FROM
+    USYSNET.SCHEDTASK
+LEFT JOIN
+    USYSNET.SCHEDTASK_REPORT ON (SCHT_ID = SCHTREP_SCHT_ID);
+
+
+-- REPORT- ÚKOLY V DATOVÉM ROZMEZÍ OD 1.3.2022-9.5.2022, KTERÉ VYTVOŘIL UŽIVATEL (DOPLNIT UŽIVATELE):
+-- Tento dotaz získává informace o úkolech v daném časovém rozmezí, které vytvořil určitý uživatel.
+-- Zahrnuje informace jako ID úkolu, název úkolu, stav úkolu, uživatel, který úkol vytvořil, a popis role tohoto uživatele.
+-- Data jsou získávána z tabulky V_TASK_LIST a jsou spojena s tabulkou RIGHT_ROLE.
+
+SELECT 
+    TASK_ID,
+    TASK_NAME AS "NÁZEV ÚKOLU",
+    TASK_CTST_NAME AS "STAV ÚKOLU",
+    TASK_CREATED_LOG_USER AS "ÚKOL VYTVOŘIL",
+    RROLE_DESCRIPTION AS "ÚKOL ZAPSAL"
+FROM
+    USYSNET.V_TASK_LIST
+INNER JOIN
+    USYSNET.RIGHT_ROLE ON (TASK_ASSIGNED_ROLE_ID = RROLE_ID)
+WHERE
+    TASK_CREATED_LOG_USER IN (……………………)
+    AND TASK_CTST_NAME NOT IN ('Zrušený/Duplicitní')
+    AND TASK_DATE_START BETWEEN '1.3.2022' AND '9.5.2022'
+    AND TASK_SYS = 'A';
+
+
+-- REPORT-POČTU ÚKOLŮ ZA DANÉ OBDOBÍ:
+-- Tento dotaz získává informace o počtu úkolů v zadaném období, rozdělených podle roku.
+-- Obsahuje informace jako ID úkolu, název úkolu, datum vytvoření úkolu a počet úkolů v každém zadaném roce.
+-- Používá subdotazy pro výpočet počtu úkolů za každý rok.
+
+SELECT
+    T1.TASK_ID,
+    T1.TASK_NAME AS "NÁZEV ÚKOLU",
+    T1.TASK_DATE_START,
+    (SELECT COUNT(TASK_ID)
+     FROM USYSNET.TASK T2
+     WHERE T1.TASK_ID = T2.TASK_TASKT_ID AND T2.TASK_DATE_START BETWEEN TO_DATE('1.1.2021', 'DD.MM.YYYY') AND TO_DATE('31.12.2021', 'DD.MM.YYYY') 
+     AND TASK_SYS = 'A'
+    ) AS "Počet úkolů 2021",
+    (SELECT COUNT(TASK_ID)
+     FROM USYSNET.TASK T2
+     WHERE T1.TASK_ID = T2.TASK_TASKT_ID AND T2.TASK_DATE_START BETWEEN TO_DATE('1.1.2022', 'DD.MM.YYYY') AND TO_DATE('31.12.2022', 'DD.MM.YYYY') 
+     AND TASK_SYS = 'A'
+    ) AS "Počet úkolů 2022",
+    (SELECT MAX(TASK_DATE_START)
+     FROM USYSNET.TASK T2
+     WHERE T1.TASK_ID = T2.TASK_TASKT_ID 
+     AND TASK_SYS = 'A'
+    ) AS "Datum vytvoření úkolu"
+FROM
+    USYSNET.TASK T1
+WHERE
+    T1.TASK_TEMPLATE_FLAG = 'A';
+
+
+-- INFORMACE O PLATNOSTI CENÍKU U ZÁKAZNÍKA ID 2413887:
+-- Tento dotaz získává informace o platnosti ceníku pro konkrétního zákazníka.
+-- Zahrnuje informace jako jméno a příjmení partnera, číslo smlouvy, účet zákazníka, název ceníku a platnost ceníku od/do.
+-- Data jsou získávána z několika spojených tabulek obsahujících informace o smlouvách a cenících.
+
+SELECT
+    PARTNER_FIRSTNAME AS "JMÉNO PARTNERA",
+    PARTNER_LASTNAME AS "PŘÍJMENÍ PARTNERA",
+    CONT_CONTRACTNO AS "ČÍSLO SMLOUVY",
+    CONT_CUSTA_ACCOUNTNO AS "ZKZ ÚČET",
+    CONT_CUST_ID AS "PARTNER ID",
+    CTARG_NAME AS "NÁZEV CENÍKU",
+    COE_VALID_FROM AS "PLATNOST CENÍKU OD",
+    COE_VALID_TO AS "PLATNOST CENÍKU DO"
+FROM
+    USYSNET.V_CONTRACT_HEADER_E_LIST
+INNER JOIN
+    USYSNET.CONTRACT_EN_ALG ON (COE_CONT_ID = CONT_ID)
+INNER JOIN
+    USYSNET.C_TARIF_GROUP ON (COE_CTARG_ID = CTARG_ID)
+INNER JOIN
+    USYSNET.CSYS_ALGORITHM_CONTRACT ON (CALGCON_ID = COE_CALGCON_ID)
+WHERE
+    COE_SYS = 'A'
+    AND CONT_CUST_ID = 2413887
+    AND CALGCON_ID IN ('202','208','212','211','218','224','230'); -- Obchod NN, Obchod VN, Obchod plyn SO/VO, Obchod plyn MO, Obchod NN s průběhovým měřením, Obchod NN - neměřený odběr, Obchod NN - neměřený odběr dle doby odběru
+
+
+-- REPORT-ODBĚRNÝCH MÍST U KTERÝCH JE PŘIPOJEN LOKÁLNÍ DISTRIBUTOR SÍTĚ:
+-- Tento dotaz získává informace o odběrných místech, která jsou připojena k lokálnímu distributorovi sítě.
+-- Zahrnuje informace jako ID partnera distributora, název distributora, EAN/EIC kód.
+-- Data jsou získávána z tabulek obsahujících informace o místech spotřeby a partnerech, a jsou filtrována podle typu partnera a systému.
+
+SELECT DISTINCT
+    CPPA_PARTNER_ID AS "PARTNER ID LDS",
+    PARTNER_FULLNAME AS "NÁZEV LDS",
+    CPE_EAN
+FROM
+    USYSNET.V_CONSUMPTION_PLACE_LIST_E
+INNER JOIN
+    USYSNET.CP_PARTNER ON (CP_ID = CPPA_CP_ID)
+INNER JOIN
+    USYSNET.PARTNER ON (CPPA_PARTNER_ID = PARTNER_ID)
+WHERE
+    CPPA_PARTNERTYPE IN '107'
+    AND PARTNER_SYS = 'A'
+    AND CP_SYS = 'A'
+    AND CP_CACC_ID = '170';
