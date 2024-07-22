@@ -1,4 +1,4 @@
-# SQL Kódy pro Certifikace LovelyData
+# SQL Kódy
 
 Tento dokument obsahuje přehled SQL operací a technologií používaných v rámci certifikací. Zaměřuje se na manipulaci s databázemi v PostgreSQL a Oracle.
 
