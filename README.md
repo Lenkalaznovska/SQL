@@ -6,9 +6,8 @@ Tento dokument obsahuje přehled SQL operací a technologií používaných v r�
 
 1. [Popis](#popis)
 2. [Použité technologie](#použité-technologie)
-3. [SQL operace - Certification LovelyData SQL 2](#sql-operace---certification-lovelydata-sql-2)
-4. [SQL operace - Certification Lovelydata.cz SQL 1](#sql-operace---certification-lovelydata-cz-sql-1)
-5. [SQL operace - Sample SQL Code in Practice](#sql-operace---sample-sql-code-in-practice)
+3. [SQL operace - Certification LovelyData SQL](#sql-operace---certification-lovelydata-sql)
+4. [SQL operace - Sample SQL Code in Practice](#sql-operace---sample-sql-code-in-practice)
 
 ## Popis
 
