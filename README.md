@@ -2,6 +2,13 @@
 
 Tento dokument obsahuje přehled SQL operací a technologií používaných v rámci certifikací. Zaměřuje se na manipulaci s databázemi v PostgreSQL a Oracle.
 
+## Obsah
+- [Popis](#popis)
+- [Použité technologie](#použité-technologie)
+- [SQL operace - Certification LovelyData SQL 2](#sql-operace---certification-lovelydata-sql-2)
+- [SQL operace - Certification Lovelydata.cz SQL1](#sql-operace---certification-lovelydata-cz-sql1)
+- [SQL operace - Sample SQL Code in Practice](#sql-operace---sample-sql-code-in-practice)
+
 ## Použité technologie
 
 - **SQL**: Jazyk pro správu a manipulaci s databázemi.
