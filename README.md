@@ -7,7 +7,7 @@ Tento dokument obsahuje přehled SQL operací a technologií používaných v r�
 1. [Popis](#popis)
 2. [Použité technologie](#použité-technologie)
 3. [SQL operace - Certification LovelyData SQL 2](#sql-operace---certification-lovelydata-sql-2)
-4. [SQL operace - Certification Lovelydata.cz SQL1](#sql-operace---certification-lovelydata-cz-sql1)
+4. [SQL operace - Certification Lovelydata.cz SQL 1](#sql-operace---certification-lovelydata-cz-sql-1)
 5. [SQL operace - Sample SQL Code in Practice](#sql-operace---sample-sql-code-in-practice)
 
 ## Popis
@@ -30,7 +30,7 @@ Tento dokument slouží jako referenční příručka pro SQL operace používan
 - **Vytvoření pohledu:** Vytvoření virtuální tabulky (pohledu) s filtrovanými daty.
 - **Dotazování pohledů:** Výběr dat z pohledu na základě podmínky na časové období.
 
-## SQL operace - Certification Lovelydata.cz SQL1
+## SQL operace - Certification Lovelydata.cz SQL 1
 
 - **Výběr a filtrování dat:** Výběr dat na základě časového rozmezí a specifických podmínek.
 - **Skupinové agregace:** Výpočet agregovaných hodnot (minimální, maximální, průměrné ceny) podle skupin.
