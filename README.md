@@ -1,49 +1,49 @@
-# SQL Kódy
+# SQL Codes
 
-Tento dokument obsahuje přehled SQL operací a technologií používaných v rámci certifikací. Zaměřuje se na manipulaci s databázemi v PostgreSQL a Oracle.
+This document provides an overview of SQL operations and technologies used in various certifications. It focuses on database manipulation in PostgreSQL and Oracle.
 
-## Obsah
+## Table of Contents
 
-1. [Popis](#popis)
-2. [Použité technologie](#použité-technologie)
-3. [SQL operace - Certification LovelyData SQL 2](#sql-operace---certification-lovelydata-sql-2)
-4. [SQL operace - Certification Lovelydata.cz SQL 1](#sql-operace---certification-lovelydata-sql-2)
-5. [SQL operace - Sample SQL Code in Practice](#sql-operace---sample-sql-code-in-practice)
+1. [Description](#description)
+2. [Technologies Used](#technologies-used)
+3. [SQL Operations - Certification LovelyData SQL 2](#sql-operations---certification-lovelydata-sql-2)
+4. [SQL Operations - Certification Lovelydata.cz SQL 1](#sql-operations---certification-lovelydata-sql-1)
+5. [SQL Operations - Sample SQL Code in Practice](#sql-operations---sample-sql-code-in-practice)
 
-## Popis
+## Description
 
-Tento dokument slouží jako referenční příručka pro SQL operace používané v rámci různých certifikací a praktických aplikací. Obsahuje základní i pokročilé operace s databázemi v PostgreSQL a Oracle.
+This document serves as a reference guide for SQL operations used in various certifications and practical applications. It includes both basic and advanced database operations in PostgreSQL and Oracle.
 
-## Použité technologie
+## Technologies Used
 
-- **SQL:** Jazyk pro správu a manipulaci s databázemi.
-- **PostgreSQL:** Databázový systém používaný pro certifikaci LovelyData.
-- **Oracle Database:** Databázový systém používaný pro praktické aplikace a reportování.
+- **SQL:** Language for managing and manipulating databases.
+- **PostgreSQL:** Database system used for LovelyData certification.
+- **Oracle Database:** Database system used for practical applications and reporting.
 
-## SQL operace - Certification LovelyData SQL 2
+## SQL Operations - Certification LovelyData SQL 2
 
-- **Vytvoření tabulky:** Vytvoření nové tabulky na základě dat z jiné tabulky.
-- **Přidání sloupce:** Přidání nového sloupce do existující tabulky.
-- **Aktualizace dat:** Nastavení hodnoty v nově přidaném sloupci.
-- **Odstranění sloupce:** Odstranění existujícího sloupce z tabulky.
-- **Podmínkové vkládání:** Vložení dat do tabulky na základě podmínky.
-- **Vytvoření pohledu:** Vytvoření virtuální tabulky (pohledu) s filtrovanými daty.
-- **Dotazování pohledů:** Výběr dat z pohledu na základě podmínky na časové období.
+- **Table Creation:** Creating a new table based on data from another table.
+- **Adding a Column:** Adding a new column to an existing table.
+- **Updating Data:** Setting values in the newly added column.
+- **Dropping a Column:** Removing an existing column from a table.
+- **Conditional Insertion:** Inserting data into a table based on a condition.
+- **Creating a View:** Creating a virtual table (view) with filtered data.
+- **Querying Views:** Selecting data from a view based on a time period condition.
 
-## SQL operace - Certification Lovelydata.cz SQL 1
+## SQL Operations - Certification Lovelydata.cz SQL 1
 
-- **Výběr a filtrování dat:** Výběr dat na základě časového rozmezí a specifických podmínek.
-- **Skupinové agregace:** Výpočet agregovaných hodnot (minimální, maximální, průměrné ceny) podle skupin.
-- **Joins:** Spojení tabulek na základě společných klíčů pro získání komplexních dat.
-- **Unikátní výběr:** Výběr jedinečných hodnot a řazení podle specifických kritérií.
-- **Filtrace podle počtu záznamů:** Skupinování dat a filtrování na základě počtu záznamů ve skupině.
+- **Selecting and Filtering Data:** Selecting data based on a time range and specific conditions.
+- **Group Aggregations:** Calculating aggregated values (minimum, maximum, average price) by groups.
+- **Joins:** Joining tables based on common keys to obtain complex data.
+- **Unique Selection:** Selecting unique values and sorting based on specific criteria.
+- **Filtering by Record Count:** Grouping data and filtering based on the number of records in each group.
 
-## SQL operace - Sample SQL Code in Practice
+## SQL Operations - Sample SQL Code in Practice
 
-- **LEFT JOIN:** Spojení dvou tabulek, kde jsou zahrnuta všechna data z levé tabulky a odpovídající data z pravé tabulky.
-- **INNER JOIN:** Spojení dvou tabulek na základě odpovídajících záznamů v obou tabulkách.
-- **Subqueries:** Použití poddotazů pro získání počtu záznamů nebo maximální hodnoty na základě hlavního dotazu.
-- **Podmínkový výběr:** Výběr dat na základě specifických podmínek (např. platnost ceníku).
-- **Distinct:** Výběr jedinečných hodnot bez duplicit.
+- **LEFT JOIN:** Joining two tables where all data from the left table and matching data from the right table are included.
+- **INNER JOIN:** Joining two tables based on matching records in both tables.
+- **Subqueries:** Using subqueries to get record counts or maximum values based on the main query.
+- **Conditional Selection:** Selecting data based on specific conditions (e.g., price list validity).
+- **Distinct:** Selecting unique values without duplicates.
 
-Tyto SQL operace zahrnují širokou škálu technik pro manipulaci s daty a vytváření komplexních dotazů v databázích PostgreSQL a Oracle.
+These SQL operations encompass a wide range of techniques for manipulating data and creating complex queries in PostgreSQL and Oracle databases.
